@@ -1,5 +1,6 @@
 body {
   margin: 0;
+ 
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -11,4 +12,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
+/* .name{
+  padding: 3px;
+}
+.email{
+  padding: 3px;
+}
+.state{
+  padding: 3px;
+}
+.city{
+  padding: 3px;
+}
+.phoneinput{
+  padding: 3px;
+} */
+/* .autocomplete{
+  padding: 3px;
+}  */
