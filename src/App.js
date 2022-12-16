@@ -5,6 +5,7 @@ import { IconButton, FormControl, FormLabel } from "@mui/material";
 import { useState } from "react";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
+import Checkbox from "@mui/material/Checkbox";
 import { useForm } from "react-hook-form";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
@@ -19,6 +20,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import { isValidPhoneNumber } from "react-phone-number-input";
 import { getValue } from "@mui/system";
 import { Metadata } from "libphonenumber-js";
+
 
 function App() {
   const {
@@ -46,30 +48,30 @@ function App() {
   const [emplyeeData, setEmployee] = useState([
     {
       name: "Joe James",
-      email: "Test@gmail.com",
+      email: "Joejames@gmail.com",
       city: "Yonkers",
-      phoneNumber: "911234567890",
+      phoneNumber: "+911234567890",
       state: "washington",
     },
     {
       name: "John Walsh",
-      email: "Test Corp@gmail.com",
+      email: "Johnwalsh@gmail.com",
       city: "berlin",
-      phoneNumber: "911234567890",
+      phoneNumber: "+918086542377",
       state: "stuggart",
     },
     {
       name: "Bob Herm",
-      email: "shah@gmail.com",
+      email: "Bobherm@gmail.com",
       city: "melborne",
-      phoneNumber: "911234567890",
+      phoneNumber: "+919067825566",
       state: "sydney",
     },
     {
-      name: "James Houston",
-      email: "Testp@gmail.com",
+      name: "Houston",
+      email: "Houston@gmail.com",
       city: "newyork",
-      phoneNumber: "911234567890",
+      phoneNumber: "+919746097688",
       state: "chicago",
     },
   ]);
@@ -108,11 +110,6 @@ function App() {
     setOpen(false);
   }
   //Adding section end
-
-
- 
-
-  
 
 } 
  //delete section start     
@@ -292,61 +289,68 @@ function App() {
           <form
             onSubmit={handleSubmit(onSubmit)}>
             <div className="row">
-              <div className="col-md-12">
-                <div className="form-floating mb-3">
+            {/* <TextField id="outlined-basic" label="Outlined" variant="outlined" /> */}
+              <div className="col-md-12 ">
                   <label>
                     Name
-                    <input
+                    </label>
+                    <div className="form-floating name pb-1">
+                    <TextField label="Name here" variant="outlined"
                       {...register("name", { required: "Name is required" })}
                       type="text"
                       aria-invalid={errors.Name ? "true" : "false"}
                     />
-                  </label>
-                  <p>{errors.Name?.message}</p>
+                
+                  <p>{errors.name?.message}</p>
                 </div>
               </div>
               <div className="col-md-12">
-                <div className="form-floating mb-3">
+               
                   <label>
                     Email
-                    <input
+                    </label>
+                    <div className="form-floating email pb-1">
+                    <TextField label="Email here" variant="outlined"
                       type="email"
                       {...register("email", {
                         required: "Email Address is required",
                       })}
                       aria-invalid={errors.mail ? "true" : "false"}
                     />
-                  </label>
-                  <p>{errors.mail?.message}</p>
+                 
+                  <p>{errors.email?.message}</p>
                 </div>
               </div>
-              <div className="col-md-12">
                 <label>
-                  countrystate
-                  <input
+                  State
+                  </label>
+                  <div className="col-md-12 state pb-1">
+                  <TextField label="State here" variant="outlined"
                     {...register("state", {
-                      required: "country state is required",
+                      required: "State is required",
                     })}
                     type="text"
                     aria-invalid={errors.countrystate ? "true" : "false"}
                   />
-                </label>
-                <p>{errors.countrystate?.message}</p>
+                
+                <p>{errors.state?.message}</p>
               </div>
-              <div className="col-md-12">
+             
                 <label>
-                  city
-                  <input
+                 City 
+                  </label>
+                  <div className="col-md-12 city pb-1">
+                  <TextField label="City here" variant="outlined"
                     {...register("city", { required: "city is required" })}
                     type="text"
                     aria-invalid={errors.city ? "true" : "false"}
                   />
-                </label>
+               
                 <p>{errors.city?.message}</p>
               </div>
-              <div className="col-md-12">
+              <div className="col-md-12 pb-1"> 
                 <FormControl>
-                  <FormLabel>Gender</FormLabel>
+                  <FormLabel className="text-dark">Gender</FormLabel>
                   <RadioGroup
                     row
                     onChange={onGenderSelect}
@@ -380,16 +384,17 @@ function App() {
                   )}{" "}
                 </FormControl>
               </div>
-              <div className="col-md-12">
+              <div className="col-md-12 autocomplete pb-1">
                 <Autocomplete
                   multiple
                   options={top100Films}
+
                   getOptionLabel={(option) => option.title}
                   defaultValue={[top100Films[1]]}
                   onChange={(e, options) => selectAutomatic(e, options)}
                   //{(e, options) =>
                   // setValue("movie",options);
-                  //setValue("film_options", options);
+                  //setValue("film_options", options);  
                   //setFilmSelector(options);
                   //}
                   renderInput={(movie) => (
@@ -403,7 +408,7 @@ function App() {
                   value={filmSelected}
                 />
               </div>
-              <div className="col-md-12">
+              <div className="col-md-12 phoneinput">
                 <PhoneInput
                   name="phoneNumber"
                   type="tel"
@@ -425,10 +430,19 @@ function App() {
                   }
                   value={valPhoneNumber}
                 />
-                <br />
               </div>
               <p>{errors.phoneNumber?.message}</p>
-              <input type="submit" />
+              
+              <FormControlLabel {...register("terms", { required: true })} 
+              aria-invalid={errors.terms ? "true" : "false"}
+                control={<Checkbox />}
+                label="Terms & Conditions"
+              />
+               {errors.terms?.type === "required" && (
+              <p role="alert"> Please Approve  Terms and Conditions !!</p>
+            )}
+            
+              <input type="submit"/>
             </div>
           </form>
         </Box>
