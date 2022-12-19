@@ -45,6 +45,9 @@ function App() {
 
   const [valPhoneNumber, setValPhonenumber] = useState();
 
+  const [deleteData,setdeletedata]=useState(null);
+  
+
   const [emplyeeData, setEmployee] = useState([
     {
       name: "Joe James",
@@ -75,6 +78,7 @@ function App() {
       state: "chicago",
     },
   ]);
+  
 
     //Edit section start 
   const onEditClick = (e) =>{
@@ -114,9 +118,21 @@ function App() {
 } 
  //delete section start     
     const onDeleteclick = (metaData)=>{
+    
+      // setEmployee(emplyeeData.filter((_, index) => index !== metaData.rowIndex));
+      //  setEmployee(emplyeeData.splice(metaData.rowIndex ,1));
+      const delData = [...emplyeeData];
+      // console.log("all",delData);
+      delData.splice(metaData.rowIndex,1);
+       console.log("newdata",delData);
+       setEmployee(delData);
 
-    setEmployee(emplyeeData.filter((_, index) => index !== metaData.rowIndex));
-      };
+
+     
+       
+
+      }
+      
        //delete section end
 
   const columns = [
@@ -186,7 +202,7 @@ function App() {
           return (
             <Tooltip title="Delete">
               <IconButton>
-                <DeleteIcon onClick={() => onDeleteclick(metaData)} />
+                <DeleteIcon onClick={(metaData) => onDeleteclick(metaData)} />
               </IconButton>
             </Tooltip>
           );
