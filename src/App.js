@@ -123,13 +123,11 @@ function App() {
       //  setEmployee(emplyeeData.splice(metaData.rowIndex ,1));
       const delData = [...emplyeeData];
       // console.log("all",delData);
+      //console.log("metadata",metaData);
       delData.splice(metaData.rowIndex,1);
-       console.log("newdata",delData);
-       setEmployee(delData);
-
-
-     
-       
+      
+       setEmployee(delData); 
+      //console.log("newdata",delData);
 
       }
       
@@ -202,7 +200,7 @@ function App() {
           return (
             <Tooltip title="Delete">
               <IconButton>
-                <DeleteIcon onClick={(metaData) => onDeleteclick(metaData)} />
+                <DeleteIcon onClick={()=>onDeleteclick(metaData)} />
               </IconButton>
             </Tooltip>
           );
