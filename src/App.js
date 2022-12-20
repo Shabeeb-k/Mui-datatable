@@ -45,7 +45,7 @@ function App() {
 
   const [valPhoneNumber, setValPhonenumber] = useState();
 
-  const [deleteData,setdeletedata]=useState(null);
+ 
   
 
   const [emplyeeData, setEmployee] = useState([
